@@ -179,7 +179,7 @@ class Slider_Pro extends Widget_Base {
 		$this->add_control(
 			'restricted_widget_text',
 			[
-				'raw' => wp_kses_post( __( 'This widget is supported only by the <a href="https://www.wpzoom.com/themes/inspiro/">"Inspiro"</a> and <a href="https://www.wpzoom.com/themes/inspiro-pro/">"Inspiro PRO"</a> themes', 'wpzoom-elementor-addons' ) ),
+				'raw' => wp_kses_post( __( 'This widget is supported only by the <a href="https://www.wpzoom.com/themes/inspiro/">"Inspiro Premium"</a> and <a href="https://www.wpzoom.com/themes/inspiro-pro/">"Inspiro PRO"</a> themes', 'wpzoom-elementor-addons' ) ),
 				'type' => Controls_Manager::RAW_HTML,
 				'content_classes' => 'elementor-descriptor',
 			]
@@ -942,7 +942,7 @@ class Slider_Pro extends Widget_Base {
 		if ( !WPZOOM_Elementor_Widgets::is_supported_theme() ) {
 			if( current_user_can('editor') || current_user_can('administrator') ) {
 				echo '<h3>' . esc_html__( 'Widget not available', 'wpzoom-elementor-addons' ) . '</h3>';
-				echo wp_kses_post( __( 'This widget is supported only by the <a href="https://www.wpzoom.com/themes/inspiro/">"Inspiro"</a> and <a href="https://www.wpzoom.com/themes/inspiro-pro/">"Inspiro PRO"</a> themes', 'wpzoom-elementor-addons' ) );
+				echo wp_kses_post( __( 'This widget is supported only by the <a href="https://www.wpzoom.com/themes/inspiro/">"Inspiro Premium"</a> and <a href="https://www.wpzoom.com/themes/inspiro-pro/">"Inspiro PRO"</a> themes', 'wpzoom-elementor-addons' ) );
 			}
 			return;
 		}
@@ -995,6 +995,7 @@ class Slider_Pro extends Widget_Base {
 						$btn_title                       = trim( get_post_meta( get_the_ID(), 'wpzoom_slide_button_title', true ) );
 						$btn_url                         = trim( get_post_meta( get_the_ID(), 'wpzoom_slide_button_url', true ) );
 						$large_image_url                 = wp_get_attachment_image_src( get_post_thumbnail_id(), 'featured@2x' );
+                        $medium_image_url = wp_get_attachment_image_src(get_post_thumbnail_id(), 'featured');
 						$small_image_url                 = wp_get_attachment_image_src( get_post_thumbnail_id(), 'featured-small' );
 						$video_background_mp4            = get_post_meta( get_the_ID(), 'wpzoom_home_slider_video_bg_url_mp4', true );
 						$video_background_webm           = get_post_meta( get_the_ID(), 'wpzoom_home_slider_video_bg_url_webm', true );
@@ -1080,10 +1081,11 @@ class Slider_Pro extends Widget_Base {
 
 						if ( ! $is_video_slide || \option::is_on( 'slideshow_video_fallback' ) ) {
 
-							$data_smallimg = isset( $small_image_url[0] ) ? ' data-smallimg="' . esc_attr( $small_image_url[0] ) . '"' : '';
-							$data_bigimg   = isset( $large_image_url[0] ) ? ' data-bigimg="' . esc_attr( $large_image_url[0] ) . '"' : '';
-		
-							$style = $data_smallimg . $data_bigimg;
+                            $data_smallimg = isset( $small_image_url[0] ) ? ' data-smallimg="' . esc_attr( $small_image_url[0] ) . '"' : '';
+                            $data_bigimg   = isset( $large_image_url[0] ) ? ' data-bigimg="' . esc_attr( $large_image_url[0] ) . '"' : '';
+                            $data_mediumimg   = isset( $medium_image_url[0] ) ? ' data-mediumimg="' . esc_attr( $medium_image_url[0] ) . '"' : '';
+
+                            $style = $data_smallimg . $data_bigimg . $data_mediumimg;
 
 						}
 						?>
