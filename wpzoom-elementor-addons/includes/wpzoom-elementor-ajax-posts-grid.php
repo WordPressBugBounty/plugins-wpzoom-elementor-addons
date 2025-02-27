@@ -107,7 +107,7 @@ class WPZOOM_Elementor_Ajax_Post_Grid {
 			$grid_style = isset( $data['grid_style'] ) && is_int( $data['grid_style'] ) ? sanitize_file_name ( $data[ 'grid_style' ] ) : '1';
 
 			// Post Query
-			$all_posts = new WP_Query( $args );
+			$all_posts = new WP_Query( $args );            
 
 			if ( $all_posts->have_posts() ) {
 
@@ -146,7 +146,7 @@ class WPZOOM_Elementor_Ajax_Post_Grid {
 	public function wpz_filter_excerpt_length( $length ) {
 		
 		$settings = $this->get_settings();
-		$excerpt_length = ( !empty( $settings[ 'excerpt_length' ] ) ) ? absint( $settings[ 'excerpt_length' ] ) : 25;
+		$excerpt_length = ( ! empty( $settings[ 'excerpt_length' ] ) ) ? absint( $settings[ 'excerpt_length' ] ) : 25;
 
 		return absint( $excerpt_length );
 	}
@@ -185,7 +185,7 @@ class WPZOOM_Elementor_Ajax_Post_Grid {
 			
 		if ( has_post_thumbnail() ) :  ?>
 			<div class="post-grid-thumbnail">
-				<a href="<?php the_permalink(); ?>">
+				<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( get_the_title() ); ?>">
 					<?php the_post_thumbnail( $post_thumbnail_size ); ?>
 				</a>
 			</div>
@@ -213,7 +213,7 @@ class WPZOOM_Elementor_Ajax_Post_Grid {
 			
 		?>
 		<<?php echo $title_tag; // WPCS: XSS OK. ?> class="title">
-			<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+			<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( get_the_title() ); ?>"><?php the_title(); ?></a>
 		</<?php echo $title_tag; // WPCS: XSS OK. ?>>
 		<?php
 	}
@@ -320,22 +320,19 @@ class WPZOOM_Elementor_Ajax_Post_Grid {
 	 * @since 1.1.5
 	 * @access public
 	 */
-	protected function render_excerpt() {
-		$settings = $this->get_settings();
-
+	public function render_excerpt() {
+		
+        $settings = $this->get_settings();
 		$show_excerpt = $settings[ 'show_excerpt' ];
 
 		if ( 'yes' !== $show_excerpt ) {
 			return;
 		}
 
-		add_filter( 'excerpt_more', [ $this, 'wpz_filter_excerpt_more' ], 20 );
-		add_filter( 'excerpt_length', [ $this, 'wpz_filter_excerpt_length' ], 9999 );
-
-		?><div class="post-grid-excerpt"><?php the_excerpt(); ?></div><?php
-
-		remove_filter( 'excerpt_length', [ $this, 'wpz_filter_excerpt_length' ], 9999 );
-		remove_filter( 'excerpt_more', [ $this, 'wpz_filter_excerpt_more' ], 20 );
+        $excerpt_length = ! empty( $settings['excerpt_length'] ) ? absint( $settings['excerpt_length'] ) : 25;
+        $excerpt = wp_trim_words( get_the_content(), $excerpt_length, '&hellip;' );
+    
+        echo '<div class="post-grid-excerpt">' . esc_html($excerpt) . '</div>';
 	}
 
 	/**
