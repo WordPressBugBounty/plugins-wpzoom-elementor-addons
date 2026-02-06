@@ -3,14 +3,14 @@
  * Plugin Name:       Elementor Addons by WPZOOM
  * Plugin URI:        https://www.wpzoom.com/plugins/wpzoom-elementor-addons/
  * Description:       A plugin that provides a collection of Elementor Templates and advanced widgets created by the WPZOOM team
- * Version:           1.2.6
+ * Version:           1.3.2
  * Author:            WPZOOM
  * Author URI:        https://www.wpzoom.com/
  * Text Domain:       wpzoom-elementor-addons
  * License:           GNU General Public License v2
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Requires at least: 6.0
- * Tested up to:      6.8
+ * Tested up to:      6.9
  * Elementor tested up to: 3.99
  * Elementor Pro tested up to: 3.99
  *
@@ -59,7 +59,7 @@ final class WPZOOM_Elementor_Addons {
 	 * @var string Minimum PHP version required to run the plugin.
 	 * @since 1.0.0
 	 */
-	const MINIMUM_PHP_VERSION = '7.0';
+	const MINIMUM_PHP_VERSION = '7.4';
 
 	/**
 	 * Instance
@@ -268,7 +268,7 @@ final class WPZOOM_Elementor_Addons {
 		
 			$message = sprintf(
 				/* translators: 1: Plugin name 2: Elementor */
-				esc_html__( '"%1$s" requires "%2$s" to activated.', 'wpzoom-elementor-addons' ),
+				esc_html__( '"%1$s" requires "%2$s" to be activated.', 'wpzoom-elementor-addons' ),
 				'<strong>' . esc_html__( 'WPZOOM Elementor Addons', 'wpzoom-elementor-addons' ) . '</strong>',
 				'<strong>' . esc_html__( 'Elementor', 'wpzoom-elementor-addons' ) . '</strong>'
 			);
