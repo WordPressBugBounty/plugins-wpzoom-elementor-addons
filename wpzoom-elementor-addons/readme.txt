@@ -4,7 +4,7 @@ Author URI:        https://www.wpzoom.com/
 Requires at least: 6.5
 Requires PHP:      7.4
 Tested up to:      7.1
-Stable tag:        1.4.16
+Stable tag:        1.4.17
 License:           GNU General Public License v2
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Tags:              elementor, elementor templates, starter templates, elementor widgets, elementor addons
@@ -49,6 +49,7 @@ Elementor templates and widgets - Import professionally designed page templates,
 * **Posts Grid** - Display blog posts in multiple layout styles
 * **Portfolio** - Portfolio showcase (Inspiro/Inspiro PRO themes)
 * **Portfolio Index** - Numbered list of projects with hover video previews and in-place playback (Inspiro/Inspiro PRO themes) - *NEW in 1.4.15*
+* **Portfolio Panes** - One project per screen with Cover / Parallax / Fade scroll effects and in-place playback (Inspiro/Inspiro PRO themes) - *NEW in 1.4.16*
 * **Pricing Table** - Pricing plan comparisons
 * **Directors** - Showcase for video creators and filmmakers
 * **Video Lightbox Button** - Button that opens a video (YouTube, Vimeo, or MP4) in a modal lightbox
@@ -128,6 +129,9 @@ No. The plugin only adds templates and widgets to the Elementor editor. It does 
 
 
 == Changelog ==
+
+= 1.4.17 =
+* New widget: Portfolio Panes (Inspiro Premium and Inspiro PRO) — one project per screen: the hover video fills the pane with the title and a credit line in the middle, and scrolling moves from pane to pane with the widget's own effect (Cover, Parallax or Fade through black), so no page-builder motion add-on is needed. A click opens the project (the Modal post style when enabled) or plays its video in the pane; dots, a scroll cue, pane heights from a band to full screen, and a static stack for reduced motion
 
 = 1.4.16 =
 * Portfolio Index: the preview no longer jumps back to the first project when the cursor leaves the list for the project panel, and titles crossed on the way to the panel are not previewed (hover intent, as in mega menus). The last hovered project stays in the panel
